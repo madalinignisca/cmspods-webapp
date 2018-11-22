@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+    Button,
     Form,
     FormGroup,
     Label,
@@ -14,23 +15,38 @@ class AddClusterForm extends Component {
         
         this.state = {
             provider: '',
-            apiKey: ''
+            apiKey: '',
+            location: ''
         }
 
-        this.setProvider = this.setProvider.bind(this);
-        this.setApiKey = this.setApiKey.bind(this);
+        this.setProviderHandler = this.setProviderHandler.bind(this);
+        this.setApiKeyHandler = this.setApiKeyHandler.bind(this);
+        this.setLocationHandler = this.setLocationHandler.bind(this);
+        this.setServerHandler = this.setServerHandler.bind(this);
     }
     
 
-    setProvider = (e) => {
+    setProviderHandler = (e) => {
         this.setState({
             provider: e.target.value
-        })
+        });
     }
 
-    setApiKey = (e) => {
+    setApiKeyHandler = (e) => {
         this.setState({
             apiKey: e.target.value
+        });
+    }
+
+    setLocationHandler = (e) => {
+        this.setState({
+            location: e.target.value
+        });
+    }
+
+    setServerHandler = (e) => {
+        this.setState({
+            server: e.target.value
         })
     }
 
@@ -39,11 +55,23 @@ class AddClusterForm extends Component {
         switch (this.state.provider) {
             case 'hetzner':
                 return (
-                    <Hetzner apiKey={this.state.apiKey} />
+                    <Hetzner apiKey={this.state.apiKey} locationHandler={this.setLocationHandler} serverHandler={this.setServerHandler} />
                 );
             default:
                 return '';
         }
+    }
+
+    displayProvisioningButton = () => {
+        if (this.state.apiKey && this.state.location && this.state.provider) {
+            return (
+                <Button onClick={this.provisionCluster} color="primary">Create</Button>
+            )
+        }
+    }
+
+    provisionCluster = () => {
+        alert("On this step I would provision the first server... To be continued!")
     }
 
     render () {
@@ -53,7 +81,7 @@ class AddClusterForm extends Component {
                     <legend>Choose a Cloud provider</legend>
                     <FormGroup check>
                         <Label check>
-                            <Input onClick={this.setProvider} type="radio" name="provider" value="hetzner" />{' '}
+                            <Input onClick={this.setProviderHandler} type="radio" name="provider" value="hetzner" />{' '}
                             Hetzner
                         </Label>
                     </FormGroup>
@@ -78,9 +106,10 @@ class AddClusterForm extends Component {
                 </FormGroup>
                 <FormGroup>
                     <Label for="apikey">API Key</Label>
-                    <Input onInput={this.setApiKey} type="text" name="apikey" id="clusterFormApikey" />
+                    <Input onInput={this.setApiKeyHandler} type="text" name="apikey" id="clusterFormApikey" />
                 </FormGroup>
                 {this.displayProvider()}
+                {this.displayProvisioningButton()}
             </Form>
         )
     }
