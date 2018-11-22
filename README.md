@@ -1,44 +1,22 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# CMS Pods Manager
 
-## Available Scripts
+**CMS Pods** allows you to manage the hosting of websites built on WordPress, Ghosts and other to come
+on VPS servers from cloud providers using Docker.
 
-In the project directory, you can run:
+Servers are provisioned in your own account. Websites are deployed using Docker and allows to
+use multiple servers for different scenarios (uses Docker Swarm and block storage volumes).
 
-### `npm start`
+The webapp can store configuration data locally or on a few cloud storage you require. It does not store
+anything to any other entity.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Roadmap:
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+* v1.0.0 Be able to initiate a WordPress website on a provisioned server using one of the available
+cloud hosters.
+* v1.1.0 Be able to scale a cluster to Swarm
+* v1.2.0 Be able to move a website from a server to another server within a Swarm
+* v1.3.0 Be able to initiate a Ghost website
+* v1.4.0 Be able to initiate a Drupal website
+* v1.5.0 Be able to initiate a Joomla website
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+...
