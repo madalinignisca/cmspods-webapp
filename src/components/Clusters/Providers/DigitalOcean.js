@@ -1,4 +1,5 @@
 import React from 'react';
+import digitalOceanLogo from './digitalocean-logo.png';
 
 const digitalOcean = (props) => {
     return (
@@ -6,4 +7,5 @@ const digitalOcean = (props) => {
     )
 }
 
+export { digitalOceanLogo };
 export default digitalOcean;

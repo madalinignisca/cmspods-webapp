@@ -6,8 +6,8 @@ import {
     Label,
     Input
 } from 'reactstrap';
-import Hetzner from './Providers/Hetzner';
-import DigitalOcean from './Providers/DigitalOcean';
+import Hetzner, { hetznerLogo } from './Providers/Hetzner';
+import DigitalOcean, { digitalOceanLogo } from './Providers/DigitalOcean';
 
 class AddClusterForm extends Component {
     constructor (props) {
@@ -78,6 +78,9 @@ class AddClusterForm extends Component {
         return (
             <Form tag="fieldset">
                 <FormGroup>
+                    <img src={hetznerLogo} alt="hetzner logo" title="Hetzner" width="64" height="64" />
+                    <img src={digitalOceanLogo} alt="digital ocean" title="Digital Ocean" width="64" height="64" />
+                    
                     <legend>Choose a Cloud provider</legend>
                     <FormGroup check>
                         <Label check>
