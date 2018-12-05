@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AddCluster from './addCluster';
+import AddCluster from './AddCluster';
 import {
     Container,
     Row,

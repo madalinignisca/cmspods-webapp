@@ -16,6 +16,7 @@ import {
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import uuidv4 from 'uuid/v4';
+import provisionWebsite from '../../lib/provisionWebsite'
 
 export default class AddWebsite extends Component {
     constructor (props) {
@@ -95,7 +96,13 @@ export default class AddWebsite extends Component {
     }
 
     createHandler = () => {
-        console.log(this.state);
+        provisionWebsite({
+            id: this.state.id,
+            cluster: this.state.cluster,
+            project: this.state.project,
+            hostname: this.state.hostname,
+            cms: this.state.cms
+        });
     }
 
     render () {
