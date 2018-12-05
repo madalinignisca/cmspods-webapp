@@ -49,7 +49,7 @@ Vagrant.configure("2") do |config|
   config.vm.define 'single' do |node|
     node.vm.hostname = 'single.todds.vm'
     node.vm.network :private_network, ip: '192.168.42.42'
-    node.hostmanager.aliases = %w(my.blog.vm)
+    node.hostmanager.aliases = %w(my.cool.blog)
   end
 
   # Share an additional folder to the guest VM. The first argument is

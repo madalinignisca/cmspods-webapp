@@ -24,11 +24,6 @@ async function provisionWebsite(data) {
         version: 'v1.37'
     });
 
-    const network = docker.createNetwork({
-        Name: 'wordpress',
-        CheckDuplicate: true
-    });
-
     ee.on('dbpull', function() {
         docker.createContainer({
             name: 'db',
@@ -43,11 +38,11 @@ async function provisionWebsite(data) {
             ExposedPorts: {
                 "3306/tcp": { }
             },
-            NetworkingConfig: {
-                'wordpress': {
-                    NetworkID: network.Id,
-                    IPAddress: '172.17.0.2'
-                }
+            HostConfig: {
+                RestartPolicy: {
+                    Name: 'unless-stopped'
+                },
+                NetworkMode: 'wordpress'
             }
         }).then((container) => {
             return container.start();
@@ -63,28 +58,20 @@ async function provisionWebsite(data) {
             Image: 'wordpress',
             Hostname: 'wp',
             Env: [
-                'WORDPRESS_DB_HOST=172.17.0.2',
+                'WORDPRESS_DB_HOST=db',
                 'WORDPRESS_DB_USER=' + MYSQL_USER,
                 'WORDPRESS_DB_PASSWORD=' + MYSQL_PASSWORD,
-                'WORDPRESS_DB_NAME=' + MYSQL_DATABASE
+                'WORDPRESS_DB_NAME=' + MYSQL_DATABASE,
+                'VIRTUAL_HOST=' + data.hostname
             ],
             ExposedPorts: {
                 "80/tcp": { }
             },
             HostConfig: {
-                PortBindings: {
-                    '80/tcp': [
-                        {
-                            HostPort: '11080'
-                        }
-                    ]
-                }
-            },
-            NetworkingConfig: {
-                'wordpress': {
-                    NetworkID: network.Id,
-                    IPAddress: '172.17.0.3'
-                }
+                RestartPolicy: {
+                    Name: 'unless-stopped'
+                },
+                NetworkMode: 'wordpress'
             }
         }).then((container) => {
             return container.start();
@@ -104,13 +91,24 @@ async function provisionWebsite(data) {
         });
     });
 
-    docker.pull(data.cms + ':latest', function(err, stream) {
-        docker.modem.followProgress(stream, onFinished);
+    ee.on('proxy', () => {
+        docker.pull(data.cms + ':latest', function(err, stream) {
+            docker.modem.followProgress(stream, onFinished);
+    
+            function onFinished(err, output) {
+                console.log(output);
+                ee.emit('wppull', true);
+            }
+        });
+    })
 
-        function onFinished(err, output) {
-            console.log(output);
-            ee.emit('wppull', true);
-        }
+    docker.createNetwork({
+        Name: 'wordpress',
+        CheckDuplicate: true
+    }).then((network) => {
+        network.connect({
+            Container: 'proxy'
+        }).then(() => ee.emit('proxy', true));
     });
 }
 
