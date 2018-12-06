@@ -24,7 +24,6 @@ export default class AddWebsite extends Component {
 
         this.state = {
             modal: false,
-            id: uuidv4(),
             cms: '',
             project: '',
             hostname: '',
@@ -97,7 +96,6 @@ export default class AddWebsite extends Component {
 
     createHandler = () => {
         provisionWebsite({
-            id: this.state.id,
             cluster: this.state.cluster,
             project: this.state.project,
             hostname: this.state.hostname,
