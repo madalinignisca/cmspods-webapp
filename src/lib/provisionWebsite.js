@@ -1,6 +1,7 @@
 import Docker from 'dockerode';
 import randomize from 'randomatic';
 import EventEmitter from 'events';
+import uuidv4 from 'uuid/v4';
 
 const ee = new EventEmitter();
 
@@ -17,11 +18,17 @@ async function provisionWebsite(data) {
     const MYSQL_USER = 'wp';
     const MYSQL_PASSWORD = randomize('Aa0', 32);
 
+    const ID = uuidv4();
+
     const docker = new Docker({
         protocol: 'http',
         host: 'single.todds.vm',
         port: 2375,
         version: 'v1.37'
+    });
+
+    ee.on('ready', function() {
+        // do something nice for the user
     });
 
     ee.on('dbpull', function() {
@@ -76,6 +83,7 @@ async function provisionWebsite(data) {
         }).then((container) => {
             return container.start();
         }).then((container) => {
+            ee.emit(ready);
             console.log(container);
         });
     });
