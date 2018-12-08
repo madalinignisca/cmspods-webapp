@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import HetznerCloud from 'hcloud-js';
 import { FormGroup, Input, Label } from 'reactstrap';
-import hetznerLogo from './hetzner-logo.png';
 
 class Hetzner extends Component {
     constructor (props) {
@@ -106,5 +105,4 @@ class Hetzner extends Component {
     }
 }
 
-export { hetznerLogo };
 export default Hetzner;

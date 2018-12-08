@@ -68,3 +68,10 @@ runcmd:
   - systemctl enable docker
   - systemctl start docker
 `;
+
+const provisionServer = (data) => {
+  console.log("Provisioning server...");
+  console.log(data);
+};
+
+export default provisionServer;

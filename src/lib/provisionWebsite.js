@@ -83,7 +83,7 @@ async function provisionWebsite(data) {
         }).then((container) => {
             return container.start();
         }).then((container) => {
-            ee.emit(ready);
+            ee.emit('ready', true);
             console.log(container);
         });
     });

@@ -6,8 +6,9 @@ import {
     Label,
     Input
 } from 'reactstrap';
-import Hetzner, { hetznerLogo } from './Providers/Hetzner';
-import DigitalOcean, { digitalOceanLogo } from './Providers/DigitalOcean';
+import Hetzner from './Providers/Hetzner';
+import DigitalOcean from './Providers/DigitalOcean';
+import provisionServer from '../../lib/provisionServer';
 
 class AddClusterForm extends Component {
     constructor (props) {
@@ -16,7 +17,8 @@ class AddClusterForm extends Component {
         this.state = {
             provider: '',
             apiKey: '',
-            location: ''
+            location: '',
+            server: '',
         }
 
         this.setProviderHandler = this.setProviderHandler.bind(this);
@@ -71,16 +73,13 @@ class AddClusterForm extends Component {
     }
 
     provisionCluster = () => {
-        alert("On this step I would provision the first server... To be continued!")
+        provisionServer(this.state);
     }
 
     render () {
         return (
-            <Form tag="fieldset">
-                <FormGroup>
-                    <img src={hetznerLogo} alt="hetzner logo" title="Hetzner" width="64" height="64" />
-                    <img src={digitalOceanLogo} alt="digital ocean" title="Digital Ocean" width="64" height="64" />
-                    
+            <Form>
+                <FormGroup>                    
                     <legend>Choose a Cloud provider</legend>
                     <FormGroup check>
                         <Label check>
@@ -88,29 +87,16 @@ class AddClusterForm extends Component {
                             Hetzner
                         </Label>
                     </FormGroup>
-                    <FormGroup check>
-                        <Label check>
-                            <Input onClick={this.setProvider} type="radio" name="provider" value="digitalocean" />{' '}
-                            Digital Ocean
-                        </Label>
-                    </FormGroup>
-                    <FormGroup check>
-                        <Label check>
-                            <Input onClick={this.setProvider} type="radio" name="provider" value="linode" />{' '}
-                            Linode
-                        </Label>
-                    </FormGroup>
-                    <FormGroup check>
-                        <Label check>
-                            <Input onClick={this.setProvider} type="radio" name="provider" value="vultr" />{' '}
-                            Vultr
-                        </Label>
-                    </FormGroup>
                 </FormGroup>
                 <FormGroup>
                     <Label for="apikey">API Key</Label>
                     <Input onInput={this.setApiKeyHandler} type="text" name="apikey" id="clusterFormApikey" />
                 </FormGroup>
+                <FormGroup>
+                    <Label for="serverHostname">Server hostname</Label>
+                    <Input onInput={this.setServerHostnameHandler} type="text" name="serverHostname" id="serverHostname" />
+                </FormGroup>
+                
                 {this.displayProvider()}
                 {this.displayProvisioningButton()}
             </Form>
