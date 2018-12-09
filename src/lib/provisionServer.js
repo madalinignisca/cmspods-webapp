@@ -69,6 +69,12 @@ runcmd:
   - systemctl start docker
 `;
 
+const providers = {
+  hetzner: {
+    apiEndpoint: 'https://api.hetzner.cloud/v1/servers'
+  }
+}
+
 const provisionServer = (data) => {
   console.log("Provisioning server...");
   console.log(data);

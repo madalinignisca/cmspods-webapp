@@ -6,6 +6,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import Clusters from './Clusters/clusters';
 import Websites from './Websites/websites';
 import Navigation from './Navigation';
+import  { FirebaseContext } from './Firebase';
 
 library.add(fab, far, fas);
 
@@ -16,6 +17,11 @@ export default class App extends Component {
         <Navigation />
         <Websites />
         <Clusters />
+        <FirebaseContext.Consumer>
+          {firebase => {
+            return <div>I've access to Firebase and render something.</div>;
+          }}
+        </FirebaseContext.Consumer>
       </div>
     );
   }
