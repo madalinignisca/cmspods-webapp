@@ -12,14 +12,12 @@ import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 
 const INITIAL_STATE = {
-    username: '',
     email: '',
-    passwordOne: '',
-    passwordTwo: '',
+    password: '',
     error: null
 }
 
-class SignUpFormBase extends Component {
+class SignInFormBase extends Component {
     constructor (props) {
         super(props);
 
@@ -31,11 +29,11 @@ class SignUpFormBase extends Component {
 
     onSubmitHandler = event => {
         event.preventDefault();
-        const { email, passwordOne } = this.state;
+        const { email, password } = this.state;
 
         this.props.firebase
-            .doCreateUserWithEmailAndPassword(email, passwordOne)
-            .then(authUser => {
+            .doSignInWithEmailAndPassword(email, password)
+            .then(() => {
                 this.setState({
                     ...INITIAL_STATE
                 });
@@ -56,30 +54,17 @@ class SignUpFormBase extends Component {
 
     render() {
         const {
-            username,
             email,
-            passwordOne,
-            passwordTwo,
+            password,
             error,
         } = this.state;
 
         const isInvalid =
-            passwordOne !== passwordTwo
-            || passwordOne === ''
-            || email === ''
-            || username === '';
+            password === ''
+            || email === '';
 
         return (
             <Form onSubmit={this.onSubmitHandler}>
-              <FormGroup>
-                <Input
-                    name="username"
-                    value={username}
-                    onChange={this.onChangeHandler}
-                    type="text"
-                    placeholder="Full Name"
-                />
-              </FormGroup>
               <FormGroup>
                 <Input
                     name="email"
@@ -91,23 +76,14 @@ class SignUpFormBase extends Component {
               </FormGroup>
               <FormGroup>
                 <Input
-                    name="passwordOne"
-                    value={passwordOne}
+                    name="password"
+                    value={password}
                     onChange={this.onChangeHandler}
                     type="password"
                     placeholder="Password"
                 />
               </FormGroup>
-              <FormGroup>
-                <Input
-                    name="passwordTwo"
-                    value={passwordTwo}
-                    onChange={this.onChangeHandler}
-                    type="password"
-                    placeholder="Confirm Password"
-                />
-              </FormGroup>
-              <Button disabled={isInvalid} type="submit">Sign Up</Button>
+              <Button disabled={isInvalid} type="submit">Sign In</Button>
 
                 {error && <p>{error.message}</p>}
             </Form>
@@ -115,9 +91,9 @@ class SignUpFormBase extends Component {
     }
 }
 
-const SignUpForm = compose(
+const SignInForm = compose(
   withRouter,
   withFirebase,
-)(SignUpFormBase);
+)(SignInFormBase);
 
-export default SignUpForm;
+export default SignInForm;
