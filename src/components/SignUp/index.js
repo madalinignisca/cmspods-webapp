@@ -1,7 +1,11 @@
 import React from 'react';
+import SignUpForm from './SignUpForm';
 
 const SignUp = () => (
-    <h1>SignUp</h1>
+    <div>
+        <h1>Sign Up</h1>
+        <SignUpForm />
+    </div>
 )
 
 export default SignUp;
