@@ -1,5 +1,15 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+import { compose } from 'recompose';
+import {
+  Button,
+  Form,
+  FormGroup,
+  Input,
+} from 'reactstrap';
+
 import { withFirebase } from '../Firebase';
+import * as ROUTES from '../../constants/routes';
 
 const INITIAL_STATE = {
     username: '',
@@ -14,10 +24,15 @@ class SignUpFormBase extends Component {
         super(props);
 
         this.state = { ...INITIAL_STATE };
+
+        this.onSubmitHandler = this.onSubmitHandler.bind(this);
+        this.onChangeHandler = this.onChangeHandler.bind(this);
     }
 
     onSubmitHandler = event => {
+        event.preventDefault();
         const { email, passwordOne } = this.state;
+    debugger;
 
         this.props.firebase
             .doCreateUserWithEmailAndPassword(email, passwordOne)
@@ -25,17 +40,20 @@ class SignUpFormBase extends Component {
                 this.setState({
                     ...INITIAL_STATE
                 });
+                this.props.history.push(ROUTES.HOME);
             })
             .catch(error => {
                 this.setState({
                     error
                 });
             });
-        
-        event.preventDefault();
     };
 
-    onChangeHandler = event => { };
+    onChangeHandler = event => {
+      this.setState({
+        [event.target.name]: event.target.value
+      });
+    };
 
     render() {
         const {
@@ -53,43 +71,54 @@ class SignUpFormBase extends Component {
             || username === '';
 
         return (
-            <form onSubmit={this.onSubmitHandler}>
-                <input
+            <Form onSubmit={this.onSubmitHandler}>
+              <FormGroup>
+                <Input
                     name="username"
                     value={username}
                     onChange={this.onChangeHandler}
                     type="text"
                     placeholder="Full Name"
                 />
-                <input
+              </FormGroup>
+              <FormGroup>
+                <Input
                     name="email"
                     value={email}
                     onChange={this.onChangeHandler}
                     type="email"
                     placeholder="Email"
                 />
-                <input
+              </FormGroup>
+              <FormGroup>
+                <Input
                     name="passwordOne"
                     value={passwordOne}
                     onChange={this.onChangeHandler}
                     type="password"
                     placeholder="Password"
                 />
-                <input
+              </FormGroup>
+              <FormGroup>
+                <Input
                     name="passwordTwo"
                     value={passwordTwo}
                     onChange={this.onChangeHandler}
                     type="password"
                     placeholder="Confirm Password"
                 />
-                <button disabled={isInvalid} type="submit">Sign Up</button>
+              </FormGroup>
+              <Button disabled={isInvalid} type="submit">Sign Up</Button>
 
                 {error && <p>{error.message}</p>}
-            </form>
+            </Form>
         );
     }
 }
 
-const SignUpForm = withFirebase(SignUpFormBase);
+const SignUpForm = compose(
+  withRouter,
+  withFirebase,
+)(SignUpFormBase);
 
 export default SignUpForm;
