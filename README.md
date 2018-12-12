@@ -1,13 +1,15 @@
 # CMS Pods Manager
 
-**CMS Pods** allows you to manage the hosting of websites built on WordPress, Ghosts and other to come
-on VPS servers from cloud providers using Docker.
+**CMS Pods** allows you to manage the hosting of websites built on WordPress,
+Ghosts and other to come on VPS servers from cloud providers using Docker.
 
-Servers are provisioned in your own account. Websites are deployed using Docker and allows to
-use multiple servers for different scenarios (uses Docker Swarm and block storage volumes).
+Servers are provisioned in your own account. Websites are deployed using
+Docker and allows to use multiple servers for different scenarios (uses Docker
+Swarm and block storage volumes).
 
-The webapp can store configuration data locally or on a few cloud storage you require. It does not store
-anything to any other entity.
+Frontend: React + Bootstrap
+Libraries: Firebase, Dockerode
+Backend: Firebase Cloudstore & Cloud Functions
 
 ## Roadmap:
 
@@ -18,5 +20,7 @@ cloud hosters.
 * v1.3.0 Be able to initiate a Ghost website
 * v1.4.0 Be able to initiate a Drupal website
 * v1.5.0 Be able to initiate a Joomla website
+* v2.0.0 Realtime stats
+* v2.1.0 Uservoice
 
 ...
