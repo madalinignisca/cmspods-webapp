@@ -18,8 +18,11 @@
 
 import React from 'react';
 
+import PasswordChangeForm from './PasswordChangeForm';
+
 const PasswordChange = () => (
     <h1>PasswordChange</h1>
 )
 
 export default PasswordChange;
+export { PasswordChangeForm }

@@ -17,16 +17,16 @@
  */
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-import { withAuthorization } from '../Session';
+import * as ROUTES from '../../constants/routes';
 
-const HomePage = () => (
-    <div>
-        <h1>Home</h1>
-        <p>The Home Page is accessible by every signed in user.</p>
-    </div>
-)
+const SignInLink = (props) => {
+    return(
+        <p>
+            <Link to={ROUTES.SIGNIN}>{props.children}</Link>
+        </p>
+    )
+}
 
-const condition = authUser => !!authUser;
-
-export default withAuthorization(condition)(HomePage);
+export default SignInLink;

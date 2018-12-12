@@ -18,8 +18,8 @@
 
 import React from 'react';
 
-const Landing = () => (
+const LandingPage = () => (
     <h1>Landing</h1>
 )
 
-export default Landing;
+export default LandingPage;

@@ -17,14 +17,18 @@
  */
 
 import React from 'react';
+
 import SignUpForm from './SignUpForm';
+import SignUpLink from './SignUpLink';
+import { SignInLink } from '../SignIn';
 
 const SignUpPage = () => (
     <div>
         <h1>Sign Up</h1>
         <SignUpForm />
+        <SignInLink>Already have an account?</SignInLink>
     </div>
 )
 
 export default SignUpPage;
-export { SignUpForm };
+export { SignUpForm, SignUpLink };

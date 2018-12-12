@@ -17,14 +17,20 @@
  */
 
 import React from 'react';
-import SignInForm from './SignInForm';
 
-const SignIn = () => (
+import SignInForm from './SignInForm';
+import SignInLink from './SignInLink';
+import { PasswordForgetLink } from '../PasswordForget';
+import { SignUpLink } from '../SignUp';
+
+const SignInPage = () => (
   <div>
     <h1>SignIn</h1>
     <SignInForm />
+    <PasswordForgetLink />
+    <SignUpLink />
   </div>
 )
 
-export default SignIn;
-export { SignInForm };
+export default SignInPage;
+export { SignInForm, SignInLink };

@@ -50,7 +50,7 @@ class NavigationNonAuth extends Component {
         return (
             <Navbar color="dark" dark expand="md" className="mb-3">
                 <Container fluid={true}>
-                    <NavbarBrand tag={Link} to={ROUTES.HOME}>cmsPods</NavbarBrand>
+                    <NavbarBrand tag={Link} to={ROUTES.LANDING}>cmsPods</NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
