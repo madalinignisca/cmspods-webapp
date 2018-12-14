@@ -24,11 +24,9 @@ import NavigationNonAuth from './NavigationNonAuth';
 import { AuthUserContext } from '../Session';
 
 const Navigation = () => (
-    <div>
-        <AuthUserContext.Consumer>
-            {authUser => authUser ? <NavigationAuth /> : <NavigationNonAuth />}
-        </AuthUserContext.Consumer>
-    </div>
+    <AuthUserContext.Consumer>
+        {authUser => authUser ? <NavigationAuth /> : <NavigationNonAuth />}
+    </AuthUserContext.Consumer>
 );
 
 export default Navigation;

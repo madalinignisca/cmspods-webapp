@@ -20,7 +20,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import {
     Collapse,
-    Container,
     Nav,
     Navbar,
     NavbarBrand,
@@ -49,21 +48,22 @@ class NavigationAuth extends Component {
 
     render () {
         return (
-            <Navbar color="dark" dark expand="md" className="mb-3">
-                <Container fluid={true}>
-                    <NavbarBrand tag={Link} to={ROUTES.HOME}>cmsPods</NavbarBrand>
-                    <NavbarToggler onClick={this.toggle} />
-                    <Collapse isOpen={this.state.isOpen} navbar>
-                        <Nav className="ml-auto" navbar>
-                            <NavItem>
-                                <NavLink tag={Link} to={ROUTES.ACCOUNT}>Account</NavLink>
-                            </NavItem>
-                            <NavItem>
-                              <SignOutButton />
-                            </NavItem>
-                        </Nav>
-                    </Collapse>
-                </Container>
+            <Navbar color="dark" dark expand="md" fixed="top" className="flex-md-nowrap shadow p-0">
+                <NavbarBrand tag={Link} to={ROUTES.LANDING} className="col-sm-3 col-md-2 mr-0">cmsPods</NavbarBrand>
+                <NavbarToggler onClick={this.toggle} />
+                <Collapse isOpen={this.state.isOpen} navbar>
+                    <Nav className="ml-auto" navbar>
+                        <NavItem>
+                            <NavLink tag={Link} to={ROUTES.HOME}>Dashboard</NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to={ROUTES.ACCOUNT}>Account</NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <SignOutButton />
+                        </NavItem>
+                    </Nav>
+                </Collapse>
             </Navbar>
         )
     }
