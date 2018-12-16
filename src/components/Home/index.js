@@ -17,46 +17,13 @@
  */
 
 import React from 'react';
-import {
-    Container,
-    Row,
-    Col,
-    Nav,
-    NavItem,
-    NavLink,
-} from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { withAuthorization } from '../Session';
 
 const HomePage = () => (
-    <Container fluid={true}>
-      <Row>
-        <Col tag="nav" md="2" className="d-none d-md-block bg-dark sidebar">
-            <div className="sidebar-sticky">
-                <h4 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                    Projects
-                </h4>
-                <Nav className="flex-column">
-                    <NavItem>
-                        <NavLink href="#">
-                            <FontAwesomeIcon icon={["fas", "plus"]} />{' '}
-                            Add project
-                        </NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink href="#">
-                            Servers
-                        </NavLink>
-                    </NavItem>
-                </Nav>
-            </div>
-        </Col>
-        <Col role="main" tag="main" md="9" lg="10" className="ml-sm-auto px-4">
-            Main region
-        </Col>
-      </Row>
-    </Container>
+    <div>
+        <h1>Home</h1>
+    </div>
 )
 
 const condition = authUser => !!authUser;
