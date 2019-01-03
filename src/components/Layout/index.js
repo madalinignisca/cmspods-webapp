@@ -18,7 +18,7 @@ const layout = Component => {
       return (    
         <Container fluid={true}>
           <Row>
-            <Col tag="nav" md="2" className="d-none d-md-block bg-dark sidebar">
+            <Col tag="nav" md="2" className="d-none d-md-block bg-light sidebar">
                 <div className="sidebar-sticky">
                     <h4 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
                         Projects
@@ -30,12 +30,10 @@ const layout = Component => {
                                 Add project
                             </NavLink>
                         </NavItem>
-                        <NavItem>
-                            <NavLink href="#">
-                                Servers
-                            </NavLink>
-                        </NavItem>
                     </Nav>
+                    <h4 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                    Servers
+                    </h4>
                 </div>
             </Col>
             <Col role="main" tag="main" md="9" lg="10" className="ml-sm-auto px-4">

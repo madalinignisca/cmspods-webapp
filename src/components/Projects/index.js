@@ -1,9 +1,19 @@
 import React from 'react';
 
-const AddProjectPage = () => {
+import AddProjectForm from './AddProjectForm';
+import { withAuthorization } from '../Session';
+
+const addProjectPage = () => {
   return (
+    <div>
       <h1>Add project</h1>
+      <AddProjectForm />
+    </div>
   )
 }
 
-export { AddProjectPage };
+const condition = authUser => !!authUser;
+
+const AddProjectPage = withAuthorization(condition)(addProjectPage)
+
+export { AddProjectPage, AddProjectForm } ;
