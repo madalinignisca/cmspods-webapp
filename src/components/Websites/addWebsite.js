@@ -32,8 +32,6 @@ import {
     ModalHeader,
     ModalBody
 } from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import uuidv4 from 'uuid/v4';
 import provisionWebsite from '../../lib/provisionWebsite'
 
 export default class AddWebsite extends Component {
@@ -103,8 +101,7 @@ export default class AddWebsite extends Component {
                 <FormGroup>
                     <InputGroup>
                         <Button onClick={this.createHandler}>
-                            Create{' '}
-                            <FontAwesomeIcon icon={['far', 'hand-point-up']} />
+                            Create
                         </Button>
                     </InputGroup>
                 </FormGroup>
@@ -144,7 +141,6 @@ export default class AddWebsite extends Component {
                                 <InputGroup>
                                     <ButtonGroup>
                                         <Button onClick={this.cmsHandler} value="wordpress">
-                                            <FontAwesomeIcon icon={['fab', 'wordpress']} />{' '}
                                             WordPress
                                         </Button>
                                     </ButtonGroup>
@@ -155,7 +151,6 @@ export default class AddWebsite extends Component {
                                 <InputGroup>
                                     <ButtonGroup>
                                         <Button onClick={this.clusterHandler} value="local">
-                                            <FontAwesomeIcon icon={['fab', 'linux']} />{' '}
                                             Local
                                         </Button>
                                     </ButtonGroup>
